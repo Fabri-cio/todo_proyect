@@ -7,8 +7,8 @@ Cada usuario puede crear, ver, actualizar y eliminar **solo sus propias tareas**
 
 ## 🚀 Tecnologías
 
-- Python 3.x  
-- Django 4.x  
+- Python 3.11  
+- Django 4.2.11  
 - Django REST Framework  
 - JWT (SimpleJWT)  
 - SQLite (para desarrollo)  
@@ -56,7 +56,18 @@ python manage.py runserver
 
 La API estará disponible en http://127.0.0.1:8000/
 
-7. **Autenticación**
+## Ejecucion con Docker
+
+1. **Construir y levantar los contenedores**
+```bash
+docker-compose up -d --build
+```
+2. **Crear superusuario solo la primera vez**
+```bash
+docker-compose exec web python manage.py createsuperuser
+```
+
+## Autenticación
 - Para obtener un token JWT: `POST /api/token/` con `{ "username": "admin", "password": "admin123" }`
 - Para refrescar el token: `POST /api/token/refresh/` con el token actual
 - Para verificar el token: `GET /api/token/verify/` con el token
