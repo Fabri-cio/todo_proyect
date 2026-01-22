@@ -24,5 +24,12 @@ while True:
         print("Esperando a PostgreSQL...")
         time.sleep(1)
 
+# Aplicar Migraciones
 os.system("python manage.py migrate")
+
+# Ejecutar seeders (datos de prueba) solo si existe el comando 'seed'
+# Esto evita errores si no tienes el comando seed
+os.system("python manage.py seed || echo 'No se encontró comando seed'")
+
+# Levantar servidor
 os.system("python manage.py runserver 0.0.0.0:8000")
